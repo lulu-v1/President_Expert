@@ -35,5 +35,5 @@ class App(tk.Tk):
 
 
 app = App()
-app.mainloop()
 app.deck.display()
+app.mainloop()
