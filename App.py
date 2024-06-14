@@ -6,9 +6,9 @@ suits = ['hearts', 'diamonds', 'clubs', 'spades']
 ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace']
 
 
-class App:
+class App(tk.Tk):
     def __init__(self):
-        self.root = tk.Tk()
+        tk.Tk.__init__(self)
         self.deck = Deck()
 
     def draw_card_path(self):
@@ -27,14 +27,13 @@ class App:
         tk_image = ImageTk.PhotoImage(pil_image)
 
         # Create a label widget to display the image
-        image_label = tk.Label(self.root, image=tk_image)
+        image_label = tk.Label(self, image=tk_image)
         image_label.pack()
 
     def run(self):
         self.draw_card_path()
-        self.root.mainloop()
 
 
 app = App()
-app.run()
+app.mainloop()
 app.deck.display()
