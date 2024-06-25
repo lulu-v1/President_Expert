@@ -61,12 +61,14 @@ class App(tk.Tk):
                     self.pile.reset()
                     continue
                 else:
-                    self.play_card(self.player, self.player.get_playable_cards(self.pile).iloc[0])
+                    card_to_play = self.player.get_playable_cards(self.pile).iloc[0]
+                    self.play_card(self.player, card_to_play)
                 if self.bot.get_playable_cards(self.pile).empty:
                     print("Bot cannot play, You win this hand")
                     self.pile.reset()
                 else:
-                    self.play_card(self.bot, self.bot.choose_card_to_play(self.pile))
+                    card_to_play = self.bot.choose_card_to_play(self.pile)
+                    self.play_card(self.bot, card_to_play)
             else:
                 if self.bot.get_playable_cards(self.pile).empty:
                     print("Bot cannot play, You win this hand")
@@ -74,19 +76,21 @@ class App(tk.Tk):
                     turn = "p"
                     continue
                 else:
-                    self.play_card(self.bot, self.bot.choose_card_to_play(self.pile))
+                    card_to_play = self.bot.choose_card_to_play(self.pile)
+                    self.play_card(self.bot,card_to_play)
                 if self.player.get_playable_cards(self.pile).empty:
                     print("Player cannot play, Bot wins this hand")
                     self.pile.reset()
                 else:
-                    self.play_card(self.player, self.player.get_playable_cards(self.pile).iloc[0])
+                    card_to_play = self.player.get_playable_cards(self.pile).iloc[0]
+                    self.play_card(self.player, card_to_play)
 
             if self.player.hand.empty or self.bot.hand.empty:
                 print("Game over")
                 if self.player.hand.empty:
-                    print("You win")
+                    print("------You win------")
                 else:
-                    print("Bot wins")
+                    print("------Bot wins------")
                 self.player.log()
                 self.bot.log()
                 break

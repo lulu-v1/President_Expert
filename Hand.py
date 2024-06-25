@@ -22,4 +22,4 @@ class Hand(pd.DataFrame):
         self.loc[len(self)] = card
 
     def log(self):
-        return self.to_string(index=False)
+        print(self.to_string(index=False))
