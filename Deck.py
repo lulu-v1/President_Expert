@@ -12,6 +12,10 @@ class Deck(pd.DataFrame):
     def is_empty(self):
         return self.empty
 
+    def shuffle(self):
+        self[:] = self.sample(frac=1).reset_index(drop=True)
+        return
+
     def draw_card(self):
         if self.is_empty:
             return "No more cards in the deck"
@@ -20,13 +24,6 @@ class Deck(pd.DataFrame):
         self.reset_index(drop=True, inplace=True)
         return card
 
-    def draw_cards(self, num_cards):
-        drawn_cards = []
-        for _ in range(num_cards):
-            card = self.draw_card()
-            drawn_cards.append(card)
-        return pd.DataFrame(drawn_cards)
-
-    def display(self):
-        print(self)
+    def log(self):
+        print(self.to_string(index=False))
         return
