@@ -1,13 +1,16 @@
 import pandas as pd
 
-
 class Hand(pd.DataFrame):
     def __init__(self):
-        pd.DataFrame.__init__(self, columns=['Rank', 'Suit'])
+        super().__init__(columns=['Rank', 'Suit'])
 
     @property
     def is_empty(self):
         return self.empty
+
+    @property
+    def cards(self):
+        return self
 
     def order(self):
         # Define custom order for ranks
