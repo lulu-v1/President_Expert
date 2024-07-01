@@ -4,6 +4,8 @@ import pandas as pd
 class Pile(pd.DataFrame):
     def __init__(self):
         pd.DataFrame.__init__(self, columns=['Rank', 'Suit'])
+        self.game_type = ""
+
 
     def add_card(self, card):
         self.loc[len(self)] = card
@@ -18,7 +20,16 @@ class Pile(pd.DataFrame):
     def log(self):
         return self.to_string(index=False)
 
+    def is_card_or_nothing(self):
+        if self.game_type == "pair":
+            return False
+        if self.shape[0] == 2 and self.iloc[-1]['Rank'] == self.iloc[-2]['Rank'] or self.shape[0] > 2 and self.iloc[-1][
+            'Rank'] == self.iloc[-2]['Rank'] != self.iloc[-3]['Rank']:
+            return True
+        return False
+
     def reset(self):
         print("Pile reset")
+        self.game_type = ""
         self.drop(self.index, inplace=True)
         return

@@ -25,5 +25,6 @@ class Deck(pd.DataFrame):
         return card
 
     def log(self):
+        pass
         print(self.to_string(index=False))
         return
