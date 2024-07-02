@@ -143,7 +143,7 @@ class Player:
                 cards_to_play.add_card(card)
         return cards_to_play
 
-    def choose_cards_to_play(self, pile, passed):
+    def choose_cards_to_play(self, pile, passed, next_player):
         cards_to_play = Hand()
         game_type = pile.game_type
         if game_type == "":
